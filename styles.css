@@ -1,0 +1,50 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4,25%);
+  grid-template-rows: repeat(4,25%);
+}
+
+img {
+  width: 300px;
+  height: 300px;
+}
+
+figure {
+  border: 1px solid rgb(134, 132, 132);
+}
+
+ul {
+  list-style-type: none;
+}
+
+main {
+  display: flex;
+  gap: 20px;
+}
+
+.container, aside {
+  border: 2px solid rgb(133, 196, 133);
+}
+
+footer {
+  background-color: rgb(209, 208, 208);
+  justify-self: flex-end;
+}
+
+button {
+  font-size: 16px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  padding: 20px 80px 40px 80px;
+  gap: 15px;
+}
