@@ -19,11 +19,14 @@ function addBookToLibrary() {
 
 function showBooks() {
   for (let i = 0; i < myLibrary.length; i++){
-    let card = document.createElement("figure");
-    card.innerHTML = myLibrary[i];
-    console.log(myLibrary[i]);
-    console.log(card);
-    container.appendChild(card);
+    let cardContainer = document.createElement("figure");
+    let card = document.createElement("figcaption");
+    
+    cardContainer.innerHTML = "<img src='./images/meditations.jpg'>";
+    card.innerHTML = myLibrary[i].title + " by " + myLibrary[i].author + ", " + myLibrary[i].publisher;
+    
+    cardContainer.appendChild(card);
+    container.appendChild(cardContainer);
   }
 }
 
