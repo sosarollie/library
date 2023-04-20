@@ -13,7 +13,32 @@
     <h1>Book Library</h1>
   </header>
   <main>
-    <div class="popUp"></div>
+    <div class="popUp">
+      <form>
+        <legend>New Book</legend>
+        <div class="input">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="title_input" required>
+        </div>
+        <div class="input">
+          <label for="author">Author</label>
+          <input type="text" name="author" id="author_input" required>
+        </div>
+        <div class="input">
+          <label for="pages">Number of pages</label>
+          <input type="text" name="pages" id="pages_input">
+        </div>
+        <div class="input">
+          <label for="read_status">Reading status</label><br>
+          <input type="radio" id="queue" name="queue" value="queue">
+          <label for="queue">In queue</label><br>
+          <input type="radio" id="in_progress" name="in_progress" value="in_progress">
+          <label for="in_progress">In progress</label><br>
+          <input type="radio" id="finished" name="finished" value="finished">
+          <label for="finished">Finished</label>
+        </div>
+      </form>
+    </div>
     <div class="container">
       <figure>
         <img src="./images/meditations.jpg">
