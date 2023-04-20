@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const container = document.querySelector(".container"); //grid container.
 let myLibrary = [];
 
 function Book(title, author, publisher) {
@@ -31,8 +31,8 @@ function showBooks() {
 }
 
 window.onload = (event) =>{
-  for (let i = 0; i < 5; i++){
-    addBookToLibrary();
-  }
-  showBooks();
+  const figures = document.querySelectorAll("figure");
+  figures.forEach(figure=> {
+    myLibrary.push(figure);
+  });
 };
