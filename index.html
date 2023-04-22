@@ -15,7 +15,7 @@
   </header>
   <main>
     <div class="popUp">
-      <button class="fa-solid fa-xmark" style="color: #ffffff;"></button>
+      <button onclick="closeform()" class="fa-solid fa-xmark" style="color: #ffffff;"></button>
       <form>
         <legend>New Book</legend>
         <div class="book_details">      
@@ -33,20 +33,20 @@
           </div>
           <div class="input">
             <label for="read_status">Reading status</label><br>
-            <input type="radio" id="pending" name="read" value="pending">
+            <input type="radio" id="pending" name="read" value="Pending">
             <label for="pending">Pending</label><br>
-            <input type="radio" id="in_progress" name="read" value="in_progress">
+            <input type="radio" id="in_progress" name="read" value="In Progress">
             <label for="in_progress">In progress</label><br>
-            <input type="radio" id="finished" name="read" value="finished">
+            <input type="radio" id="finished" name="read" value="Finished">
             <label for="finished">Finished</label>
           </div>
           <div class="input">
             <label for="cover">Book Cover</label>
             <input type="file" name="cover" id="cover">
           </div>
-        </div>  
+        </div>
+        <button class="submit">Add Book</button>  
       </form>
-      <button>Add Book</button>
     </div>
     <div class="container">
       <figure>
