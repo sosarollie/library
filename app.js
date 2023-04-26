@@ -19,20 +19,39 @@ function addBookToLibrary() {
   const newBook = new Book(title, author, pages);
 
   myLibrary.push(newBook);
+  showBook(newBook);
   console.log(myLibrary);
 }
 
-function showBook() {
-  for (let i = 0; i < myLibrary.length; i++){
+function showBook(book) {
     let cardContainer = document.createElement("figure");
-    let card = document.createElement("figcaption");
-    
+    let figcaption = document.createElement("figcaption");
+    let ul = document.createElement("ul");
+
     cardContainer.innerHTML = "<img src='./images/meditations.jpg'>";
-    card.innerHTML = myLibrary[i].title + " by " + myLibrary[i].author + ", " + myLibrary[i].publisher;
-    
-    cardContainer.appendChild(card);
+
+    for(const key in book) {
+      let card = document.createElement("li");
+      console.log(key);
+      switch(key) {
+        case "title":
+          card.innerHTML = book.title;
+          card.classList.add("title");
+          break;
+        case "author":
+          card.innerHTML = book.author;
+          card.classList.add("author");
+          break;
+        case "pages":
+          card.innerHTML = book.pages;
+          card.classList.add("status_display");
+          break;
+      }
+      ul.appendChild(card);
+    }
+    figcaption.appendChild(ul);
+    cardContainer.appendChild(figcaption);
     container.appendChild(cardContainer);
-  }
 }
 
 function openform() {
