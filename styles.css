@@ -108,6 +108,10 @@ input[type="file"] {
   border-radius: 10px;
 }
 
+input[type="number"] {
+  width: 50px;
+}
+
 legend {
   font-size: 35px;
   font-weight: bold;
