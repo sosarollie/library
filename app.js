@@ -28,10 +28,11 @@ function addBookToLibrary() {
 
 function showBook(book) {
     let cardContainer = document.createElement("figure");
+    let image = document.createElement("img");
     let figcaption = document.createElement("figcaption");
     let ul = document.createElement("ul");
 
-    cardContainer.innerHTML = book.cover;
+    image.setAttribute("src", book.cover);
 
     for(const key in book) {
       let card = document.createElement("li");
@@ -46,13 +47,15 @@ function showBook(book) {
           card.classList.add("author");
           break;
         case "pages":
-          card.innerHTML = book.read + book.pages;
+          card.innerHTML = book.read + "(" + book.read + book.pages + ")";
           card.classList.add("status_display");
           break;
       }
       ul.appendChild(card);
     }
+
     figcaption.appendChild(ul);
+    cardContainer.appendChild(image);
     cardContainer.appendChild(figcaption);
     container.appendChild(cardContainer);
 }
@@ -67,26 +70,10 @@ function closeForm() {
   popUp.classList.remove('active');
 }
 
-function openNumberPages() {
-  const newInput = document.createElement('input');
-  newInput.type = 'number';
-  const newLabel = document.createElement('label');
-  const progressLabel = document.getElementById('in_progress_label');
-
-  newLabel.innerHTML = " | I'm at page: ";
-
-  progressLabel.insertAdjacentElement('afterend', newLabel);
-  newLabel.insertAdjacentElement('afterend', newInput);
-}
-
 submit.addEventListener('click', function(event){
   event.preventDefault();
   closeForm();
   addBookToLibrary();
-})
-
-inProgressRadio.addEventListener('click', function(event){
-  openNumberPages();
 })
 
 window.onload = (event) =>{

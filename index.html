@@ -15,7 +15,7 @@
   </header>
   <main>
     <div class="popUp">
-      <button onclick="closeform()" class="fa-solid fa-xmark" style="color: #ffffff;"></button>
+      <button onclick="closeForm()" class="fa-solid fa-xmark" style="color: #ffffff;"></button>
       <form>
         <legend>New Book</legend>
         <div class="book_details">      
@@ -28,8 +28,8 @@
             <input type="text" name="author" id="author_input" required>
           </div>
           <div class="input">
-            <label for="pages">Number of pages</label>
-            <input type="number" name="pages" id="pages_input">
+            <label for="pages">Pages (Progress/Total)</label>
+            <input type="number" name="pages" id="pages_input" required>
           </div>
           <div class="input">
             <label for="read_status">Reading status</label><br>
@@ -98,11 +98,6 @@
         </figcaption>
       </figure>  
     </div>
-    <aside>
-      <div class="sidebar">
-        <button>Filter</button>
-      </div>
-    </aside>
   </main>
   <footer>
     Copyright @jesussosarollie
