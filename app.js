@@ -7,10 +7,11 @@ let selectedImg;
 
 let myLibrary = [];
 
-function Book(title, author, pages, read, cover) {
+function Book(title, author, pagesProgress, pagesTotal, read, cover) {
   this.title = title;
   this.author = author;
-  this.pages = pages;
+  this.pagesProgress = pagesProgress;
+  this.pagesTotal = pagesTotal;
   this.read = read;
   this.cover = cover;
 }
@@ -23,11 +24,13 @@ fileInput.onchange = () => {
 function addBookToLibrary() {
   const title = document.getElementById('title_input').value;
   const author = document.getElementById('author_input').value;
-  const pages = document.getElementById('pages_input').value;
+  const pagesProgress = document.getElementById('pages_progress_input').value;
+  const pagesTotal = document.getElementById('pages_total_input').value;
   const read = document.querySelector('input[name="read"]:checked').value;
 
-  const newBook = new Book(title, author, pages, read, selectedImg);
+  const newBook = new Book(title, author, pagesProgress, pagesTotal, read, selectedImg);
 
+  console.log(newBook);
   myLibrary.push(newBook);
   showBook(newBook);
 }
@@ -51,8 +54,10 @@ function showBook(book) {
           card.innerHTML = book.author;
           card.classList.add("author");
           break;
-        case "pages":
-          card.innerHTML = book.read + "(" + book.pages + ")";
+        case "pagesProgress":
+          if (book.read === "In Progress"){
+            card.innerHTML = book.read + `(${book.pagesProgress}/${book.pagesTotal})`;  
+          } else card.innerHTML = book.read;
           card.classList.add("status_display");
           break;
       }
