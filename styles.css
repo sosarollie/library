@@ -8,7 +8,7 @@ body {
   grid-template-areas: 
   "header header header"
   "main main main"
-  "footer footer footer"
+  "footer footer footer";
 }
 
 header {
@@ -32,7 +32,8 @@ figure {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border: 1px solid rgba(134, 132, 132, 0.342);
+  border: 1px solid rgba(80, 79, 79, 0.342);
+  border-radius: 5px;
   padding: 15px;
   gap: 10px;
 }
@@ -176,4 +177,14 @@ aside {
 .author, .status_display {
   font-style: italic;
   color: rgb(212, 212, 212);
+}
+
+.fa-trash-can:hover {
+  transition: 0.2s ease;
+  background-color: rgb(211, 77, 77);
+  color: rgb(97, 28, 28);
+}
+
+.newButtonFig {
+  border: none;
 }

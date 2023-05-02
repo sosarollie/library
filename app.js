@@ -36,12 +36,14 @@ function addBookToLibrary() {
 }
 
 function showBook(book) {
-    let cardContainer = document.createElement("figure");
-    let image = document.createElement("img");
-    let figcaption = document.createElement("figcaption");
-    let ul = document.createElement("ul");
+    const cardContainer = document.createElement("figure");
+    const image = document.createElement("img");
+    const figcaption = document.createElement("figcaption");
+    const ul = document.createElement("ul");
+    const delButton = document.createElement("button");
 
     image.setAttribute("src", URL.createObjectURL(book.cover));
+    delButton.classList.add("fa-solid","fa-trash-can");
 
     for(const key in book) {
       let card = document.createElement("li");
@@ -67,6 +69,7 @@ function showBook(book) {
     figcaption.appendChild(ul);
     cardContainer.appendChild(image);
     cardContainer.appendChild(figcaption);
+    cardContainer.appendChild(delButton);
     container.appendChild(cardContainer); //displays book on the page
     myLibrary.push(cardContainer); //adds book to the array.
 }
