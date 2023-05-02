@@ -40,10 +40,14 @@ function showBook(book) {
     const image = document.createElement("img");
     const figcaption = document.createElement("figcaption");
     const ul = document.createElement("ul");
+    const buttonContainer = document.createElement("div");
     const delButton = document.createElement("button");
+    const editButton = document.createElement("button");
 
     image.setAttribute("src", URL.createObjectURL(book.cover));
-    delButton.classList.add("fa-solid","fa-trash-can");
+    delButton.classList.add("fa-solid", "fa-trash-can");
+    editButton.classList.add("fa-sharp", "fa-solid", "fa-pen-to-square");
+    buttonContainer.classList.add("buttonContainer");
 
     for(const key in book) {
       let card = document.createElement("li");
@@ -69,7 +73,9 @@ function showBook(book) {
     figcaption.appendChild(ul);
     cardContainer.appendChild(image);
     cardContainer.appendChild(figcaption);
-    cardContainer.appendChild(delButton);
+    buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(delButton);
+    cardContainer.appendChild(buttonContainer);
     container.appendChild(cardContainer); //displays book on the page
     myLibrary.push(cardContainer); //adds book to the array.
 }
