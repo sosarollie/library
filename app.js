@@ -18,10 +18,10 @@ function Book(title, author, pagesProgress, pagesTotal, read, cover) {
 
 fileInput.onchange = () => {
   selectedImg = fileInput.files[0];
-  console.log(selectedImg);
 }
 
 function addBookToLibrary() {
+
   const title = document.getElementById('title_input').value;
   const author = document.getElementById('author_input').value;
   const pagesProgress = document.getElementById('pages_progress_input').value;
@@ -29,10 +29,10 @@ function addBookToLibrary() {
   const read = document.querySelector('input[name="read"]:checked').value;
 
   const newBook = new Book(title, author, pagesProgress, pagesTotal, read, selectedImg);
-
-  console.log(newBook);
-  myLibrary.push(newBook);
+  
   showBook(newBook);
+  moveAddButton();
+  console.log(myLibrary);
 }
 
 function showBook(book) {
@@ -67,7 +67,15 @@ function showBook(book) {
     figcaption.appendChild(ul);
     cardContainer.appendChild(image);
     cardContainer.appendChild(figcaption);
-    container.appendChild(cardContainer);
+    container.appendChild(cardContainer); //displays book on the page
+    myLibrary.push(cardContainer); //adds book to the array.
+}
+
+function moveAddButton() {
+  const addBookFig =  myLibrary.at(-2);
+  myLibrary.splice(-2, -2);
+  myLibrary.push(addBookFig);
+  container.appendChild(addBookFig);
 }
 
 function openForm() {
