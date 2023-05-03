@@ -3,7 +3,8 @@ const submit = document.querySelector(".submit");
 const inProgressRadio = document.getElementById("in_progress"); 
 const fileInput = document.getElementById('cover');
 const figures = document.querySelectorAll("figure");
-let delButtons = document.querySelectorAll(".fa-trash-can");
+let delButtons = document.getElementsByClassName("fa-trash-can");
+console.log(delButtons);
 
 let selectedImg;
 
@@ -78,9 +79,8 @@ function showBook(book) {
     buttonContainer.appendChild(editButton);
     buttonContainer.appendChild(delButton);
     cardContainer.appendChild(buttonContainer);
-    container.appendChild(cardContainer); //displays book on the page
+    container.appendChild(cardContainer); //displays book on the page.
     myLibrary.push(cardContainer); //adds book to the array.
-    giveIndex(cardContainer);
 }
 
 function moveAddButton() {
@@ -104,7 +104,6 @@ function closeForm() {
 function updateIndex(){
   for (let i = 0; i< myLibrary.length; i++){
     myLibrary[i].dataset.index = i;
-    console.log(myLibrary[i].dataset.index);
   }
 }
 
@@ -117,22 +116,35 @@ submit.addEventListener('click', function(event){
   event.preventDefault();
   closeForm();
   addBookToLibrary();
-  delButtons = querySelectorAll(".fa-pen-to-square");
+  updateIndex();
+  for (let i = 0; i< myLibrary.length; i++){
+    console.log(myLibrary[i].dataset.index);
+  }
+  console.log(delButtons);
 });
 
-delButtons.forEach(delButton => {
-  delButton.addEventListener('click', (e)=>{
-    const bookContainer = delButton.parentNode.parentNode;
+// Array.from(delButtons).forEach(delButton => {
+//   delButton.addEventListener('click', (e)=>{
+//     const bookContainer = delButton.parentNode.parentNode;
+//     deleteElement(bookContainer.dataset.index);
+//     updateIndex();
+//   });
+// });
+
+document.addEventListener("click", function(e){
+  const target = e.target.closest(".fa-trash-can"); // Or any other selector.
+
+  if(target){
+    const bookContainer = target.parentNode.parentNode;
+    console.log(bookContainer);
     deleteElement(bookContainer.dataset.index);
     updateIndex();
-    console.log(myLibrary);
-  })
-})
+  }
+});
 
 window.onload = (event) => {
   figures.forEach(figure=> {
     myLibrary.push(figure);
   });
   updateIndex();
-  console.log(myLibrary);
 };
