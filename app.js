@@ -2,8 +2,10 @@ const container = document.querySelector(".container"); //grid container.
 const submit = document.querySelector(".submit");
 const inProgressRadio = document.getElementById("in_progress"); 
 const fileInput = document.getElementById('cover');
+const figures = document.querySelectorAll("figure");
 
 let selectedImg;
+let arrayIndex = 0;
 
 let myLibrary = [];
 
@@ -78,13 +80,15 @@ function showBook(book) {
     cardContainer.appendChild(buttonContainer);
     container.appendChild(cardContainer); //displays book on the page
     myLibrary.push(cardContainer); //adds book to the array.
+    giveIndex(cardContainer);
 }
 
 function moveAddButton() {
   const addBookFig =  myLibrary.at(-2);
-  myLibrary.splice(-2, -2);
+  myLibrary.splice(-2, 1);
   myLibrary.push(addBookFig);
   container.appendChild(addBookFig);
+  console.log(myLibrary);
 }
 
 function openForm() {
@@ -103,10 +107,15 @@ submit.addEventListener('click', function(event){
   addBookToLibrary();
 })
 
+function giveIndex(figure){
+  figure.dataset.index = arrayIndex;
+  arrayIndex++;
+  console.log(figure.dataset.index);
+}
 
-window.onload = (event) =>{
-  const figures = document.querySelectorAll("figure");
+window.onload = (event) => {
   figures.forEach(figure=> {
     myLibrary.push(figure);
+    giveIndex(figure);
   });
 };
