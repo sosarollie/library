@@ -3,9 +3,9 @@ const submit = document.querySelector(".submit");
 const inProgressRadio = document.getElementById("in_progress"); 
 const fileInput = document.getElementById('cover');
 const figures = document.querySelectorAll("figure");
+let delButtons = document.querySelectorAll(".fa-trash-can");
 
 let selectedImg;
-let arrayIndex = 0;
 
 let myLibrary = [];
 
@@ -101,21 +101,38 @@ function closeForm() {
   popUp.classList.remove('active');
 }
 
+function updateIndex(){
+  for (let i = 0; i< myLibrary.length; i++){
+    myLibrary[i].dataset.index = i;
+    console.log(myLibrary[i].dataset.index);
+  }
+}
+
+function deleteElement(index) {
+  myLibrary[index].remove();
+  myLibrary.splice(index, 1);
+}
+
 submit.addEventListener('click', function(event){
   event.preventDefault();
   closeForm();
   addBookToLibrary();
-})
+  delButtons = querySelectorAll(".fa-pen-to-square");
+});
 
-function giveIndex(figure){
-  figure.dataset.index = arrayIndex;
-  arrayIndex++;
-  console.log(figure.dataset.index);
-}
+delButtons.forEach(delButton => {
+  delButton.addEventListener('click', (e)=>{
+    const bookContainer = delButton.parentNode.parentNode;
+    deleteElement(bookContainer.dataset.index);
+    updateIndex();
+    console.log(myLibrary);
+  })
+})
 
 window.onload = (event) => {
   figures.forEach(figure=> {
     myLibrary.push(figure);
-    giveIndex(figure);
   });
+  updateIndex();
+  console.log(myLibrary);
 };
