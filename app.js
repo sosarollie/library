@@ -1,5 +1,6 @@
 const container = document.querySelector(".container"); //grid container.
 const submit = document.querySelector(".submit");
+const edit = document.querySelector(".edit");
 const inProgressRadio = document.getElementById("in_progress"); 
 const fileInput = document.getElementById('cover');
 const figures = document.querySelectorAll("figure");
@@ -7,6 +8,7 @@ let delButtons = document.getElementsByClassName("fa-trash-can");
 console.log(delButtons);
 
 let selectedImg;
+let currentBook;
 
 let myLibrary = [];
 
@@ -83,6 +85,26 @@ function showBook(book) {
     myLibrary.push(cardContainer); //adds book to the array.
 }
 
+function editForm(book){
+  const pagesProgress = document.getElementById('pages_progress_input_edit').value;
+  const pagesTotal = document.getElementById('pages_total_input_edit').value;
+  const read = document.querySelector('input[name="read_edit"]:checked').value;
+
+  console.log(book);
+
+  const child = book.childNodes;
+  const fig = child[3];
+  const figChild = fig.childNodes;
+  const ul = figChild[1];
+  const ulChild = ul.childNodes;
+  const readStatus = ulChild[5];
+
+
+  if (read === "Pending" || read === "Finished"){
+    readStatus.innerHTML = read;
+  } else readStatus.innerHTML = `${read} (${pagesProgress}/${pagesTotal})`;
+}
+
 function moveAddButton() {
   const addBookFig =  myLibrary.at(-2);
   myLibrary.splice(-2, 1);
@@ -92,12 +114,22 @@ function moveAddButton() {
 }
 
 function openForm() {
-  const popUp = document.querySelector('.popUp');
+  const popUp = document.getElementById('add');
   popUp.classList.add('active');
 }
 
 function closeForm() {
-  const popUp = document.querySelector('.popUp');
+  const popUp = document.getElementById('add');
+  popUp.classList.remove('active');
+}
+
+function openEditForm() {
+  const popUp = document.getElementById('editForm');
+  popUp.classList.add('active');
+}
+
+function closeEditForm() {
+  const popUp = document.getElementById('editForm');
   popUp.classList.remove('active');
 }
 
@@ -117,29 +149,35 @@ submit.addEventListener('click', function(event){
   closeForm();
   addBookToLibrary();
   updateIndex();
-  for (let i = 0; i< myLibrary.length; i++){
-    console.log(myLibrary[i].dataset.index);
-  }
-  console.log(delButtons);
 });
 
-// Array.from(delButtons).forEach(delButton => {
-//   delButton.addEventListener('click', (e)=>{
-//     const bookContainer = delButton.parentNode.parentNode;
-//     deleteElement(bookContainer.dataset.index);
-//     updateIndex();
-//   });
-// });
+edit.addEventListener('click', function(event){
+  event.preventDefault();
+  closeEditForm();
+  editForm(currentBook);
+})
 
 document.addEventListener("click", function(e){
-  const target = e.target.closest(".fa-trash-can"); // Or any other selector.
-
+  const target = e.target.closest(".fa-trash-can");
+  
   if(target){
     const bookContainer = target.parentNode.parentNode;
     console.log(bookContainer);
     deleteElement(bookContainer.dataset.index);
     updateIndex();
   }
+
+});
+
+document.addEventListener("click", function(e){
+  const target = e.target.closest(".fa-pen-to-square");
+  
+  if(target){
+    openEditForm();
+    const book = target.parentNode.parentNode;
+    currentBook = book;
+  }
+
 });
 
 window.onload = (event) => {
@@ -147,4 +185,5 @@ window.onload = (event) => {
     myLibrary.push(figure);
   });
   updateIndex();
+  console.log(myLibrary[0]);
 };

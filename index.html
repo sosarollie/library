@@ -14,7 +14,7 @@
     <h1>Book Library</h1>
   </header>
   <main>
-    <div class="popUp">
+    <div class="popUp" id="add">
       <button onclick="closeForm()" class="fa-solid fa-xmark" style="color: #ffffff;"></button>
       <form>
         <legend>New Book</legend>
@@ -28,14 +28,6 @@
             <input type="text" name="author" id="author_input" required>
           </div>
           <div class="input">
-            <label for="pages">I'm at page</label>
-            <input type="number" name="pages" id="pages_progress_input" required>
-          </div>
-          <div class="input">
-            <label for="pages">Total pages</label>
-            <input type="number" name="pages" id="pages_total_input" required>
-          </div>
-          <div class="input">
             <label for="read_status">Reading status</label><br>
             <input type="radio" id="pending" name="read" value="Pending">
             <label for="pending">Pending</label><br>
@@ -45,11 +37,45 @@
             <label for="finished">Finished</label>
           </div>
           <div class="input">
+            <label for="pages">I'm at page</label>
+            <input type="number" name="pages" id="pages_progress_input" required>
+          </div>
+          <div class="input">
+            <label for="pages">Total pages</label>
+            <input type="number" name="pages" id="pages_total_input" required>
+          </div>
+          <div class="input">
             <label for="cover">Book Cover</label>
             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
           </div>
         </div>
         <button class="submit">Add Book</button>  
+      </form>
+    </div>
+    <div class="popUp" id="editForm">
+      <button onclick="closeEditForm()" class="fa-solid fa-xmark" style="color: #ffffff;"></button>
+      <form>
+        <legend>Edit Book</legend>
+        <div class="book_details">      
+          <div class="input">
+            <label for="read_status">Reading status</label><br>
+            <input type="radio" id="pending_edit" name="read_edit" value="Pending">
+            <label for="pending">Pending</label><br>
+            <input type="radio" id="in_progress_edit" name="read_edit" value="In Progress">
+            <label for="in_progress" id="in_progress_label_edit">In progress</label><br>
+            <input type="radio" id="finished_edit" name="read_edit" value="Finished"checked>
+            <label for="finished">Finished</label>
+          </div>
+          <div class="input">
+            <label for="pages">I'm at page</label>
+            <input type="number" name="pages" id="pages_progress_input_edit" required>
+          </div>
+          <div class="input">
+            <label for="pages">Total pages</label>
+            <input type="number" name="pages" id="pages_total_input_edit">
+          </div>
+        </div>
+        <button class="edit">Edit Book</button>  
       </form>
     </div>
     <div class="container">
