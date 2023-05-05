@@ -1,4 +1,6 @@
 const container = document.querySelector(".container"); //grid container.
+const form = document.querySelector("form");
+const inputs = document.querySelectorAll(".inputs");
 const submit = document.querySelector(".submit");
 const edit = document.querySelector(".edit");
 const inProgressRadio = document.getElementById("in_progress"); 

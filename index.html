@@ -23,32 +23,32 @@
         <legend>New Book</legend>
         <div class="book_details">      
           <div class="input">
-            <label for="title">Title</label>
+            <label for="title">Title *</label>
             <input type="text" name="title" id="title_input" required>
           </div>
           <div class="input">
-            <label for="author">Author</label>
+            <label for="author">Author *</label>
             <input type="text" name="author" id="author_input" required>
           </div>
           <div class="input">
-            <label for="read_status">Reading status</label><br>
+            <label for="read_status">Reading status *</label><br>
             <input type="radio" id="pending" name="read" value="Pending">
             <label for="pending">Pending</label><br>
             <input type="radio" id="in_progress" name="read" value="In Progress">
             <label for="in_progress" id="in_progress_label">In progress</label><br>
-            <input type="radio" id="finished" name="read" value="Finished"checked>
+            <input type="radio" id="finished" name="read" value="Finished">
             <label for="finished">Finished</label>
           </div>
           <div class="input">
             <label for="pages">I'm at page</label>
-            <input type="number" name="pages" id="pages_progress_input" required>
+            <input type="number" name="pages" id="pages_progress_input">
           </div>
           <div class="input">
             <label for="pages">Total pages</label>
-            <input type="number" name="pages" id="pages_total_input" required>
+            <input type="number" name="pages" id="pages_total_input">
           </div>
           <div class="input">
-            <label for="cover">Book Cover</label>
+            <label for="cover">Book Cover *</label>
             <input type="file" name="cover" id="cover" accept="image/png, image/jpeg">
           </div>
         </div>

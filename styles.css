@@ -172,10 +172,6 @@ button {
   cursor: pointer;
 }
 
-aside {
-  justify-self: flex-end;
-}
-
 .sidebar {
   display: flex;
   flex-direction: column;
