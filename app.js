@@ -9,7 +9,7 @@ const figures = document.querySelectorAll("figure");
 let delButtons = document.getElementsByClassName("fa-trash-can");
 console.log(delButtons);
 
-let selectedImg;
+let selectedImg = "template";
 let currentBook;
 
 let myLibrary = [];
@@ -51,7 +51,10 @@ function showBook(book) {
     const delButton = document.createElement("button");
     const editButton = document.createElement("button");
 
-    image.setAttribute("src", URL.createObjectURL(book.cover));
+    if (book.cover != "template"){ 
+      image.setAttribute("src", URL.createObjectURL(book.cover));
+    } else image.setAttribute("src", "./images/coverTemplate.jpg");
+    
     delButton.classList.add("fa-solid", "fa-trash-can");
     editButton.classList.add("fa-sharp", "fa-solid", "fa-pen-to-square");
     buttonContainer.classList.add("buttonContainer");
@@ -68,7 +71,7 @@ function showBook(book) {
           card.classList.add("author");
           break;
         case "pagesProgress":
-          if (book.read === "In Progress"){
+          if (book.read === "In Progress" && book.pagesProgress <= book.pagesTotal){
             card.innerHTML = book.read + `(${book.pagesProgress}/${book.pagesTotal})`;  
           } else card.innerHTML = book.read;
           card.classList.add("status_display");
@@ -102,9 +105,9 @@ function editForm(book){
   const readStatus = ulChild[5];
 
 
-  if (read === "Pending" || read === "Finished"){
-    readStatus.innerHTML = read;
-  } else readStatus.innerHTML = `${read} (${pagesProgress}/${pagesTotal})`;
+  if (book.read === "In Progress" && pagesProgress <= pagesTotal){
+    readStatus.innerHTML = `${read} (${pagesProgress}/${pagesTotal})`;
+  } else readStatus.innerHTML = read;
 }
 
 function moveAddButton() {
