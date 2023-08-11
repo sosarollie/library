@@ -1,13 +1,12 @@
 const container = document.querySelector(".container"); //grid container.
 const form = document.querySelector("form");
-const inputs = document.querySelectorAll(".inputs");
+const inputs = document.querySelectorAll("input");
 const submit = document.querySelector(".submit");
 const edit = document.querySelector(".edit");
 const inProgressRadio = document.getElementById("in_progress");
 const fileInput = document.getElementById("cover");
 const figures = document.querySelectorAll("figure");
 let delButtons = document.getElementsByClassName("fa-trash-can");
-console.log(delButtons);
 
 let selectedImg = "template";
 let currentBook;
@@ -45,7 +44,6 @@ function addBookToLibrary() {
 
   showBook(newBook);
   moveAddButton();
-  console.log(myLibrary);
 }
 
 function showBook(book) {
@@ -107,8 +105,6 @@ function editForm(book) {
   const pagesTotal = document.getElementById("pages_total_input_edit").value;
   const read = document.querySelector('input[name="read_edit"]:checked').value;
 
-  console.log(book);
-
   const child = book.childNodes;
   const fig = child[3];
   const figChild = fig.childNodes;
@@ -126,7 +122,6 @@ function moveAddButton() {
   myLibrary.splice(-2, 1);
   myLibrary.push(addBookFig);
   container.appendChild(addBookFig);
-  console.log(myLibrary);
 }
 
 function openForm() {
@@ -137,6 +132,10 @@ function openForm() {
 function closeForm() {
   const popUp = document.getElementById("add");
   popUp.classList.remove("active");
+}
+
+function clearInputs() {
+  inputs.forEach((input) => (input.value = ""));
 }
 
 function openEditForm() {
@@ -160,17 +159,41 @@ function deleteElement(index) {
   myLibrary.splice(index, 1);
 }
 
+function validate() {
+  let isValid = true;
+  const inputs = Array.from(form.elements);
+
+  const formInputs = inputs.filter((input) => input.hasAttribute("required"));
+
+  formInputs.forEach((input) => {
+    if (!input.checkValidity()) {
+      input.classList.add("invalid");
+      input.reportValidity();
+      isValid = false;
+    } else {
+      input.classList.remove("invalid");
+      input.reportValidity();
+    }
+  });
+
+  return isValid;
+}
+
 submit.addEventListener("click", function (event) {
   event.preventDefault();
-  closeForm();
-  addBookToLibrary();
-  updateIndex();
+  if (validate() == true) {
+    addBookToLibrary();
+    updateIndex();
+    closeForm();
+    clearInputs();
+  }
 });
 
 edit.addEventListener("click", function (event) {
   event.preventDefault();
-  closeEditForm();
   editForm(currentBook);
+  closeEditForm();
+  clearInputs();
 });
 
 document.addEventListener("click", function (e) {
@@ -178,7 +201,6 @@ document.addEventListener("click", function (e) {
 
   if (target) {
     const bookContainer = target.parentNode.parentNode;
-    console.log(bookContainer);
     deleteElement(bookContainer.dataset.index);
     updateIndex();
   }
@@ -199,5 +221,4 @@ window.onload = (event) => {
     myLibrary.push(figure);
   });
   updateIndex();
-  console.log(myLibrary[0]);
 };
